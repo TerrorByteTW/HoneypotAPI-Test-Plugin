@@ -63,7 +63,7 @@ public class Test extends JavaPlugin implements Listener {
                 return true;
             }
         
-        // Use the HoneypotBlockManager API to check for Honeypot Blocks. This is just an example, refer to the Javadoc for more info
+        // Use the HoneypotBlockManager API to check for Honeypot Blocks. This is just an example, refer to the Javadoc for more info. Only applicable in v2.1.1+
         } else if (label.equalsIgnoreCase("checkblock")) {
             Player player = (Player) sender;
 
