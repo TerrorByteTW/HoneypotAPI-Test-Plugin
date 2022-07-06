@@ -10,3 +10,5 @@ depend: [Honeypot]
 commands:
   testcommand: 
     description: Tests the event
+  checkblock:
+    description: Checks the block
