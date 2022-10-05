@@ -67,11 +67,12 @@ public class Test extends JavaPlugin implements Listener {
         } else if (label.equalsIgnoreCase("checkblock")) {
             Player player = (Player) sender;
 
-            // Create a HoneypotBlockManager object to manage Honeypot Blocks safely
-            HoneypotBlockManager hbm = new HoneypotBlockManager();
+            // Starting in version 2.5.1, creating a new instance of the manager class is deprecated. Starting in the
+            // immediate next version, this functionality will be completely removed. Please be sure to update your plugins by then
+            // HoneypotBlockManager hbm = new HoneypotBlockManager();
 
             // If the target block exactly 5 blocks away is a Honeypot, let the player no
-            if(hbm.isHoneypotBlock(player.getTargetBlockExact(5))) {
+            if(HoneypotBlockManager.getInstance().isHoneypotBlock(player.getTargetBlockExact(5))) {
                 player.sendMessage("I'm a Honeypot! :)");
                 return true;
             } else {
