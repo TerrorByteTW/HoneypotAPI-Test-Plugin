@@ -3,7 +3,6 @@ version: '${project.version}'
 author: TerrorByte
 description: Test plugin
 main: me.terrorbyte.test.Test
-api-version: 1.17
 load: POSTWORLD
 depend: [Honeypot]
 

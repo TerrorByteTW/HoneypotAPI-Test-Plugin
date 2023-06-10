@@ -7,6 +7,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import org.jetbrains.annotations.NotNull;
+import org.reprogle.honeypot.Honeypot;
 import org.reprogle.honeypot.api.events.HoneypotPrePlayerBreakEvent;
 import org.reprogle.honeypot.api.events.HoneypotPrePlayerInteractEvent;
 import org.reprogle.honeypot.storagemanager.HoneypotBlockManager;
@@ -14,7 +16,13 @@ import org.reprogle.honeypot.storagemanager.HoneypotBlockManager;
 public class Test extends JavaPlugin implements Listener {
     
     public static boolean testActive = false; 
-    public Test plugin;
+    public static Test plugin;
+
+    // This is how you would register behavior providers
+    @Override
+    public void onLoad() {
+        Honeypot.getRegistry().register(new DemoBehavior());
+    }
 
     @Override
     public void onEnable(){
@@ -49,17 +57,17 @@ public class Test extends JavaPlugin implements Listener {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, String label, @NotNull String[] args) {
 
         // Enable event cancelling
         if(label.equalsIgnoreCase("testcommand")) {
             if (testActive) {
                 testActive = false;
-                ((Player) sender).sendMessage("Honeypot event cancelling is off!");
+                sender.sendMessage("Honeypot event cancelling is off!");
                 return true;
             } else {
                 testActive = true;
-                ((Player) sender).sendMessage("Honeypot event cancelling is on!");
+                sender.sendMessage("Honeypot event cancelling is on!");
                 return true;
             }
         
@@ -83,6 +91,10 @@ public class Test extends JavaPlugin implements Listener {
         
 
         return false;
+    }
+
+    public static Test getPlugin() {
+        return plugin;
     }
 
 }
