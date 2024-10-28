@@ -6,7 +6,7 @@
 
     <groupId>me.terrorbyte</groupId>
     <artifactId>test</artifactId>
-    <version>2.0</version>
+    <version>3.0</version>
     <packaging>jar</packaging>
 
     <name>Test</name>
@@ -38,8 +38,8 @@
 
     <repositories>
         <repository>
-            <id>spigotmc-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+            <id>paper-repo</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
         </repository>
         <repository>
             <id>sonatype</id>
@@ -53,15 +53,15 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.20-R0.1-SNAPSHOT</version>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>1.21.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.reprogle</groupId>
-            <artifactId>honeypot-core</artifactId>
-            <version>3.0.0</version>
+            <groupId>org.reprogle.Honeypot</groupId>
+            <artifactId>honeypot-api</artifactId>
+            <version>Honeypot-3.4.0-4077d3f826-1</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

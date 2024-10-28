@@ -11,9 +11,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import org.jetbrains.annotations.Nullable;
-import org.reprogle.honeypot.providers.Behavior;
-import org.reprogle.honeypot.providers.BehaviorProvider;
-import org.reprogle.honeypot.providers.BehaviorType;
+import org.reprogle.honeypot.common.providers.Behavior;
+import org.reprogle.honeypot.common.providers.BehaviorProvider;
+import org.reprogle.honeypot.common.providers.BehaviorType;
 
 import java.util.Objects;
 

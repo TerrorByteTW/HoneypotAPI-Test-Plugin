@@ -8,35 +8,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import org.jetbrains.annotations.NotNull;
-import org.reprogle.honeypot.Honeypot;
+import org.reprogle.honeypot.Registry;
 import org.reprogle.honeypot.api.events.HoneypotPrePlayerBreakEvent;
 import org.reprogle.honeypot.api.events.HoneypotPrePlayerInteractEvent;
-import org.reprogle.honeypot.storagemanager.HoneypotBlockManager;
 
 public class Test extends JavaPlugin implements Listener {
-    
-    public static boolean testActive = false; 
+
+    public static boolean testActive = false;
     public static Test plugin;
-
-    // This is how you would register behavior providers
-    @Override
-    public void onLoad() {
-        Honeypot.getRegistry().register(new DemoBehavior());
-    }
-
-    @Override
-    public void onEnable(){
-        plugin = this;
-        this.getLogger().info("Enabling!");
-        getCommand("testcommand").setExecutor(this);
-        getCommand("checkblock").setExecutor(this);
-        this.getServer().getPluginManager().registerEvents(this, this);
-    }
-
-    @Override
-    public void onDisable(){
-        this.getLogger().info("Disabling!");
-    }
 
     @EventHandler
     public static void HoneypotPrePlayerBreakEvent(HoneypotPrePlayerBreakEvent event) {
@@ -56,11 +35,36 @@ public class Test extends JavaPlugin implements Listener {
         event.getPlayer().sendMessage("You threw the event!");
     }
 
+    public static Test getPlugin() {
+        return plugin;
+    }
+
+    // This is how you would register behavior providers
+    @Override
+    public void onLoad() {
+        Registry.getBehaviorRegistry().register(new DemoBehavior());
+        Registry.getStorageManagerRegistry().register(new DemoHoneypotStore());
+    }
+
+    @Override
+    public void onEnable() {
+        plugin = this;
+        this.getLogger().info("Enabling!");
+        getCommand("testcommand").setExecutor(this);
+        getCommand("checkblock").setExecutor(this);
+        this.getServer().getPluginManager().registerEvents(this, this);
+    }
+
+    @Override
+    public void onDisable() {
+        this.getLogger().info("Disabling!");
+    }
+
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, String label, @NotNull String[] args) {
 
         // Enable event cancelling
-        if(label.equalsIgnoreCase("testcommand")) {
+        if (label.equalsIgnoreCase("testcommand")) {
             if (testActive) {
                 testActive = false;
                 sender.sendMessage("Honeypot event cancelling is off!");
@@ -70,8 +74,8 @@ public class Test extends JavaPlugin implements Listener {
                 sender.sendMessage("Honeypot event cancelling is on!");
                 return true;
             }
-        
-        // Use the HoneypotBlockManager API to check for Honeypot Blocks. This is just an example, refer to the Javadoc for more info. Only applicable in v2.1.1+
+
+            // Use the HoneypotBlockManager API to check for Honeypot Blocks. This is just an example, refer to the Javadoc for more info. Only applicable in v2.1.1+
         } else if (label.equalsIgnoreCase("checkblock")) {
             Player player = (Player) sender;
 
@@ -80,21 +84,16 @@ public class Test extends JavaPlugin implements Listener {
             // HoneypotBlockManager hbm = new HoneypotBlockManager();
 
             // If the target block exactly 5 blocks away is a Honeypot, let the player no
-            if(HoneypotBlockManager.getInstance().isHoneypotBlock(player.getTargetBlockExact(5))) {
+            if (Registry.getStorageProvider().isHoneypotBlock(player.getTargetBlockExact(5))) {
                 player.sendMessage("I'm a Honeypot! :)");
-                return true;
             } else {
                 player.sendMessage("I'm not a Honeypot :(");
-                return true;
             }
+            return true;
         }
-        
+
 
         return false;
-    }
-
-    public static Test getPlugin() {
-        return plugin;
     }
 
 }
