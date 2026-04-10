@@ -7,7 +7,7 @@ plugins {
 }
 
 project.group = "me.terrorbyte"
-project.version = "3.0"
+project.version = "4.0"
 project.description = "Test"
 
 java {
