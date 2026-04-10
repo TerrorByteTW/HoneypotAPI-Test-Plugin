@@ -1,5 +1,6 @@
 # Ignore the target folder
 target/
+build/
 
 # Ignore the .vscode folder
 .vscode/
