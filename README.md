@@ -6,3 +6,7 @@ To use, run `/testcommand` in game to toggle cancelling player break and interac
 You can also run `/checkblock` to see if it's a Honeypot or not.
 
 If you want to demo Behavior Providers, create a Honeypot with the type of 'chicken-storm'. Warning -- turn down your volume ;)
+
+## Configurable Options (Honeypot 4+)
+- `chicken-count`: Number of chickens to spawn in the chicken storm. Default: 50
+- `die-after`: Time in seconds after which each chicken will die and play the Enderman death sound. Default: 10

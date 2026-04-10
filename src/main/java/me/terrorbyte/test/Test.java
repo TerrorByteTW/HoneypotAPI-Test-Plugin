@@ -1,5 +1,6 @@
 package me.terrorbyte.test;
 
+import lombok.Getter;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -15,6 +16,7 @@ import org.reprogle.honeypot.api.events.HoneypotPrePlayerInteractEvent;
 public class Test extends JavaPlugin implements Listener {
 
     public static boolean testActive = false;
+    @Getter
     public static Test plugin;
 
     @EventHandler
@@ -33,10 +35,6 @@ public class Test extends JavaPlugin implements Listener {
             event.getPlayer().sendMessage("Test is active so interact event is cancelled!");
         }
         event.getPlayer().sendMessage("You threw the event!");
-    }
-
-    public static Test getPlugin() {
-        return plugin;
     }
 
     // This is how you would register behavior providers

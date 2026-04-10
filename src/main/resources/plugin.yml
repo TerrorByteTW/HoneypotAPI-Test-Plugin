@@ -1,9 +1,9 @@
 name: Test
-version: '${project.version}'
+version: '@version@'
 author: TerrorByte
 description: Test plugin
 main: me.terrorbyte.test.Test
-load: POSTWORLD
+load: STARTUP
 depend: [Honeypot]
 
 commands:
